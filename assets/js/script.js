@@ -1,14 +1,16 @@
 $(function(){
     $('form').on('submit', function(event){
         var isValid = true;
-        event.preventDefault();
+        
         var name = $('#name').val();
         var firstName = $('#firstName').val();
         var mail = $('#mail').val();
         var phone = $('#numberPhone').val();
+        
         var checkName = /^[A-Z][a-zéèçàïîêëôöûü]+([ -][A-Z][a-zéèçàïîêëôöûü]+)?$/;
         var checkFirstName = /^[A-Z][a-zéèçàïîêëôöûü]+([ -][A-Z][a-zéèçàïîêëôöûü]+)?$/;
-        var checkMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        //var checkMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        var checkMail = /^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
         var checkPhone = /^(0|\+33)[1-9]([-. ][0-9]{2}){4}$/;
 
         $('form span.text-danger').remove();
@@ -41,9 +43,8 @@ $(function(){
             span.text('Veuillez entrer un numéro de téléphone valide');
             $('#numberPhone').after(span);
         }
-        if(isValid){
-           // $('form').submit();
-            alert('submit');
+        if(!isValid){
+            event.preventDefault();
         }
     });
 });
